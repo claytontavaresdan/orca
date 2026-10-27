@@ -60,7 +60,8 @@
         "agentDisabled": "已在智能体设置中关闭",
         "description": "选择哪些智能体以聊天方式打开。关闭后，已安装的智能体将在终端中打开。",
         "toggleLabel": "以聊天方式打开 {{value0}}"
-      }
+      },
+      "permissionsDescriptionOwnAgents": "New chats follow each agent’s permission in Settings → Agents."
     },
     "terminal": {
       "optionLayoutAlt": "ABC 或 U.S. — Option 键发送 Alt/Esc 序列",
@@ -166,7 +167,9 @@
         "softer": "更柔和",
         "sharper": "更清晰",
         "terminalControlledHint": "由终端界面设置。",
-        "terminalControlledTooltip": "正在匹配终端外观。要更改此项，请关闭“匹配终端外观”。"
+        "terminalControlledTooltip": "正在匹配终端外观。要更改此项，请关闭“匹配终端外观”。",
+        "fontKeywordTypeface": "typeface",
+        "fontKeywordTypography": "typography"
       }
     },
     "browser": {
@@ -289,7 +292,38 @@
       "collapseAgentSettings": "折叠智能体设置",
       "customPermissions": "自定义参数",
       "rowPermissionsLabel": "{{agent}} 权限",
-      "replaceWithPermissionMode": "替换为 {{mode}}"
+      "replaceWithPermissionMode": "替换为 {{mode}}",
+      "permissionsTitle": "Permissions",
+      "permissionsChoiceExplanation": "What every agent may do without asking. You can set one agent differently below.",
+      "permissionEachOwn": "Each agent's own settings",
+      "permissionEachOwnDescription": "Orca adds nothing; each CLI uses its own config",
+      "permissionArgsTerminalOnly": "These arguments may control {{agent}}’s terminal permissions, so Orca adds no flag. Chats use the Permissions choice above.",
+      "localSaveFailed": "Agent settings could not be saved. Try again.",
+      "localSaveFailedAgent": "{{agent}} settings could not be saved. Try again.",
+      "permissionFromArgs": "{{agent}} set to {{mode}} in terminals and new chats.",
+      "permissionFromArgsTerminals": "{{agent}} set to {{mode}} in terminals.",
+      "permissionOwnAgent": "Use {{agent}}'s own settings",
+      "permissionOwnAll": "Agents' own settings",
+      "permissionOwnLegacyDescription": "Orca adds no permission flag in terminals; chats use Settings → Chat.",
+      "permissionOwnDescription": "Terminals and chats follow the agent’s own permission settings.",
+      "permissionChoiceDescription": "Applies where each agent supports this mode. Change one agent below.",
+      "permissionOwnShort": "Own settings",
+      "permissionWithoutAuto": "Agents without Approve for me",
+      "permissionSurfaceDifference": "Terminals use the agent’s own settings; new chats use {{mode}}.",
+      "permissionSameAsAll": "Same as all agents",
+      "permissionChipRemove": "Remove {{flag}} and use {{agent}}'s own settings",
+      "permissionChipTooltip": "Added by Permissions. Remove it to use {{agent}}’s own settings.",
+      "permissionOverridesKept": "{{count}} agents still use their own permission setting:",
+      "permissionOverridesKept_one": "{{count}} agent still uses their own permission setting:",
+      "permissionOverridesKept_other": "{{count}} agents still use their own permission setting:",
+      "permissionOverridesFollow": "{{count}} agents now follow {{mode}}",
+      "permissionOverridesFollow_one": "{{count}} agent now follows {{mode}}",
+      "permissionOverridesFollow_other": "{{count}} agents now follow {{mode}}",
+      "permissionOverrideFollows": "{{agent}} now follows {{mode}}",
+      "permissionOverrideMore": "and {{count}} more",
+      "permissionOverrideMore_one": "and {{count}} more",
+      "permissionOverrideMore_other": "and {{count}} more",
+      "permissionOverridesUse": "Use {{mode}}"
     },
     "followSymlinkedDirectoriesKeywords": {
       "symlink": "符号链接",
@@ -317,6 +351,9 @@
         "extraArgs": "额外 CLI 参数",
         "launchOptions": "模型和权限",
         "savedLaunchOptions": "已保存的选项：{{value0}}。旧版服务器使用其自身的权限设置。"
+      },
+      "actionPermissions": {
+        "sameAsAgent": "Same as {{agent}}"
       }
     }
   },
@@ -636,7 +673,19 @@
                 }
               }
             }
-          }
+          },
+          "localBaseRefShallowHistoryTitle": "Local {{value0}} not updated: shallow clone",
+          "localBaseRefShallowHistoryNamed": "\"{{value0}}\" was created from {{value1}} and is unaffected. Orca could not also update your local {{value2}} branch because this clone only has recent history, so Git cannot confirm local {{value2}} is just behind. To fix this for every new workspace, run once:",
+          "localBaseRefShallowHistory": "Your workspace was created from {{value0}} and is unaffected. Orca could not also update your local {{value1}} branch because this clone only has recent history, so Git cannot confirm local {{value1}} is just behind. To fix this for every new workspace, run once:",
+          "localBaseRefRefreshTurnOff": "Disable Check",
+          "localBaseRefRefreshTurnOffHelp": "What Disable Check does",
+          "localBaseRefRefreshTurnOffTooltip": "Turns off the Orca setting {{value0}}. Orca will stop updating local {{value1}} when you create a workspace, and this warning will stop appearing. New workspaces are unaffected. Turn it back on anytime in Settings › Git.",
+          "localBaseRefUnshallow": "Unshallow",
+          "localBaseRefUnshallowFailed": "Could not open a terminal for this workspace",
+          "localBaseRefUnshallowFailedDescription": "Run {{value0}} in a terminal in this repository instead.",
+          "localBaseRefRefreshTurnedOff": "Orca will no longer update local {{value0}}",
+          "localBaseRefRefreshTurnedOffDescription": "Turn it back on in Settings › {{value0}}.",
+          "localBaseRefRefreshTurnOffFailed": "Could not turn off {{value0}}"
         },
         "repos": {
           "2975400634": "请更新 Orca 服务器，以便在此运行时打开非 Git 文件夹。",
@@ -655,7 +704,11 @@
           "wslFilesystemBoundaryTitle": "该项目存储在 Windows 驱动器上",
           "wslFilesystemBoundaryDescription": "该项目的 Git 在 {{distro}} 中运行，它通过 WSL 文件系统桥到达 Windows 驱动器。预计 git 的速度比存储在 {{distro}} 内的副本慢大约 20 倍。",
           "moveToGroupOtherHost": "无法将项目移动到分组",
-          "moveToGroupOtherHostDesc": "运行此项目的计算机上没有此分组。项目只能加入保存在其所在计算机上的分组。"
+          "moveToGroupOtherHostDesc": "运行此项目的计算机上没有此分组。项目只能加入保存在其所在计算机上的分组。",
+          "pendingRemovalRefused": "The server kept a project you removed while it was offline",
+          "removeProjectHostUnreachable": "Its server can’t be reached. Remove it from this desktop now, and Orca removes it from the server when it reconnects.",
+          "removeProjectLocallyNow": "Remove from this desktop now",
+          "removeProjectHostDisconnected": "Its server is disconnected. Remove it from this desktop now, and Orca removes it from the server when you reconnect."
         },
         "settings": {
           "e12dab333b": "切换服务器失败",
@@ -1105,7 +1158,11 @@
               "locationRemoteHost": "从 {{value0}} 上的浏览​​器读取并存储在那里。",
               "googleCookiesSkippedLocal": "未导入 Google cookie。使用此配置文件在 Orca 中打开浏览器，然后登录 Google。",
               "googleCookiesSkippedClientHosted": "未导入 Google cookie。使用此配置文件在 {{value0}} 工作区中打开浏览器选项卡 - 它在此设备上打开 - 然后登录 Google。",
-              "googleCookiesSkippedRemoteWorkspace": "未导入 Google cookie。使用此配置文件在 {{value0}} 工作区中打开浏览器选项卡，然后登录 Google。"
+              "googleCookiesSkippedRemoteWorkspace": "未导入 Google cookie。使用此配置文件在 {{value0}} 工作区中打开浏览器选项卡，然后登录 Google。",
+              "secretToolMissing": "Orca couldn't read {{count}} of {{browser}}'s encrypted cookies because secret-tool isn't installed. Install libsecret-tools (or your distribution's equivalent) and import again.",
+              "cookieKeyLocked": "Orca couldn't read {{count}} of {{browser}}'s encrypted cookies because access to the system keyring was locked or denied. Unlock your login keyring, allow access if prompted, and import again.",
+              "cookieKeyUnavailable": "Orca couldn't read {{count}} of {{browser}}'s encrypted cookies because the cookie encryption key couldn't be read. Try importing again, import cookies using “From File…”, or sign in directly in Orca.",
+              "otherUndecryptableCookies": "{{count}} more cookies could not be decrypted for another reason."
             }
           }
         }
@@ -1178,7 +1235,8 @@
       },
       "aiVaultResumeRefusal": {
         "openInChat": "此 {{value0}} 会话已在聊天中打开。请刷新会话历史以打开它。",
-        "ownershipUnknown": "Orca 无法确认此 {{value0}} 会话的归属。请刷新会话历史并重试。"
+        "ownershipUnknown": "Orca 无法确认此 {{value0}} 会话的归属。请刷新会话历史并重试。",
+        "preparationRefused": "Orca could not prepare this {{value0}} conversation. Start a new chat to continue."
       },
       "composerCreateHandoff": {
         "reopen": "重新打开",
@@ -1210,6 +1268,22 @@
             }
           }
         }
+      },
+      "dropFailureReason": {
+        "tooLarge": "Too large to upload to this host.",
+        "noSpace": "The host is out of disk space.",
+        "changed": "The file changed while it was uploading. Try again.",
+        "hostUnreachable": "The connection to the host changed or dropped. Try again.",
+        "disconnected": "The host is disconnected.",
+        "unknownOne": "Couldn't upload this file.",
+        "unknownMany": "Couldn't upload these files."
+      },
+      "claudeAgentRowView": {
+        "restartRequired": "Restart Claude in this pane to enable subagent navigation. Recent Claude versions with Orca hooks are required.",
+        "permissionPrompt": "Answer Claude’s permission prompt before switching agents.",
+        "agentUnavailable": "Claude cannot open this agent. It may no longer be available.",
+        "closeDialog": "Claude did not switch views. Close any open dialog and try again.",
+        "hostUnavailable": "Subagent navigation is unavailable on this host. Update Orca and restart Claude in this pane."
       }
     },
     "hooks": {
@@ -1246,7 +1320,9 @@
         "nativeDropUnresolvedPaths": "Orca 无法读取已删除文件的路径。",
         "nativeDropTempCopyFailed": "Orca 无法复制 {{count}} 个拖放的文件。",
         "nativeDropTempCopyFailed_one": "Orca 无法复制 {{count}} 个拖放的文件。",
-        "nativeDropTempCopyFailed_other": "Orca 无法复制 {{count}} 个拖放的文件。"
+        "nativeDropTempCopyFailed_other": "Orca 无法复制 {{count}} 个拖放的文件。",
+        "hostMismatch": "This editor is on a different host. Open the file from its source workspace.",
+        "workspaceOpenFailed": "Could not open {{fileName}}. Open it from its source workspace and try again."
       },
       "useIpcEvents": {
         "0e3cf53060": "未找到浏览器选项卡 {{value0}}",
@@ -2527,7 +2603,8 @@
         "e57db40c11": "无法为 {{value0}} 构建启动命令。",
         "5b2c1a9e44": "未检测到智能体 CLI，请安装一个，或在设置中选择默认智能体。",
         "b7c1f0a934": "无法访问远程主机，因此 Orca 无法判断工作是否仍在运行。还是关窗吧？",
-        "quitSnapshotSaveFailed": "退出已取消：无法保存会话快照 ({{value0}})。"
+        "quitSnapshotSaveFailed": "退出已取消：无法保存会话快照 ({{value0}})。",
+        "reloadSnapshotSaveFailed": "Reload canceled: the session snapshot could not be saved ({{value0}})."
       },
       "TerminalSearch": {
         "db234b7519": "关闭",
@@ -2668,7 +2745,10 @@
               "a5b66afb58": "检查已通过",
               "fbd4f57f0a": "检查已通过。合并资格将在合并前再次验证。",
               "4ab19a62ef": "启用自动合并",
-              "8f6cb3772f": "满足要求后自动合并此PR"
+              "8f6cb3772f": "满足要求后自动合并此PR",
+              "def355ff38": "Able to merge",
+              "e42c5bae67": "GitHub says this PR can merge and checks passed",
+              "cbf0113af6": "GitHub says this PR can merge"
             }
           }
         },
@@ -3708,7 +3788,9 @@
             "chatNotOnHost": "此主机不支持聊天",
             "chatNotInWsl": "WSL 不支持聊天",
             "cliTag": "(CLI)",
-            "chatNotOverSsh": "SSH 连接不支持聊天"
+            "chatNotOverSsh": "SSH 连接不支持聊天",
+            "terminalListNeedsServerUpdate": "Update Orca on this server to list terminal agents",
+            "terminalListFailed": "Couldn’t list terminal agents for this workspace"
           },
           "RecentTabSwitcher": {
             "329638ff6f": "切换选项卡",
@@ -4071,7 +4153,9 @@
             "codexSignInError": "Codex 登录失败，请重试。",
             "cursorUsageMenu": "Cursor 用量",
             "hiddenUsageProviders": "另有：{{value0}}",
-            "zcodeUsageMenu": "Z代码使用"
+            "zcodeUsageMenu": "Z代码使用",
+            "4025a6f62f": "Unlimited",
+            "a95969101f": "{{value0}} credits"
           },
           "StatusBarUsageEmptyCta": {
             "828c764a79": "连接账户",
@@ -4272,7 +4356,15 @@
             "claudeNoUsageFromHost": "{{server}} 无用量数据",
             "claudeUnknownOnHost": "无法从 {{server}} 获取 Claude 用量。可能未在那里登录，或使用的是 API 密钥计费。",
             "remoteOwnerUnreachable": "用量不可用 — 无法连接到 {{server}}",
-            "remoteOwnerNoUsage": "用量不可用 — {{server}} 未提供用量信息。请更新该主机上的 Orca。"
+            "remoteOwnerNoUsage": "用量不可用 — {{server}} 未提供用量信息。请更新该主机上的 Orca。",
+            "fbc80d8be2": "Zen balance",
+            "c03c61f53f": "Balance",
+            "f6a27a3c0a": "{{value0}} available",
+            "7404abbece": "Usage credits",
+            "473d45cd0f": "Balance {{value0}}",
+            "f21b2ba897": "Credits",
+            "56c0d70577": "Unlimited",
+            "87b5bda4d3": "{{value0}} credits available"
           },
           "SshTargetStatusRow": {
             "sshHost": "SSH 主机"
@@ -4410,7 +4502,8 @@
             "extra": {
               "usage": {
                 "section": {
-                  "135d51c19f": "限额 {{value0}}"
+                  "135d51c19f": "限额 {{value0}}",
+                  "apiKeyBalanceUnavailable": "Balance is not included in this usage response."
                 }
               }
             }
@@ -5501,7 +5594,10 @@
           "loadedPathsNotice": "已加载的路径可能不完整或已过时。",
           "loadedChangedPaths": "已加载的更改路径",
           "unresolvedConflict": "未解决的冲突",
-          "moreLoadedPaths": "以及另外 {{value0}} 个已加载的路径"
+          "moreLoadedPaths": "以及另外 {{value0}} 个已加载的路径",
+          "changeCount_one": "1 uncommitted or untracked change",
+          "changeCount_other": "{{count}} uncommitted or untracked changes",
+          "changes": "Uncommitted or untracked changes"
         },
         "DeleteWorktreeLineageNotice": {
           "ad407c2d55": "更多的",
@@ -5527,7 +5623,15 @@
           "5a9688802a": "显示 {{value0}} 更多",
           "294de4aeb2": "显示较少",
           "collapseAriaLabel": "折叠 {{repo}} 的隐藏工作树",
-          "expandAriaLabel": "展开 {{repo}} 的隐藏工作树"
+          "expandAriaLabel": "展开 {{repo}} 的隐藏工作树",
+          "hiding_one": "Hiding 1 discovered worktree",
+          "hiding_other": "Hiding {{count}} discovered worktrees",
+          "hidingInRepo_one": "Hiding 1 discovered worktree in {{repo}}",
+          "hidingInRepo_other": "Hiding {{count}} discovered worktrees in {{repo}}",
+          "keepHiddenAriaLabel_one": "Keep 1 discovered worktree hidden for {{repo}}; recover from the project menu",
+          "keepHiddenAriaLabel_other": "Keep {{count}} discovered worktrees hidden for {{repo}}; recover from the project menu",
+          "keepHiddenTooltip": "Keep hidden - recover from the project menu",
+          "repoOnHost": "{{repo}} on {{host}}"
         },
         "NonGitFolderDialog": {
           "e52454b7f6": "作为文件夹打开",
@@ -5556,7 +5660,8 @@
         "PendingWorktreeRow": {
           "af21e953d1": "取消工作树创建",
           "188f6922a0": "取消",
-          "creatingWorkspace": "正在创建工作区…"
+          "creatingWorkspace": "正在创建工作区…",
+          "creationFailed": "Creation failed"
         },
         "ProjectGroupDeleteDialog": {
           "ca65b78f78": "取消",
@@ -5587,7 +5692,8 @@
           "00c4235c10": "没有匹配“{{value0}}”",
           "largeInputNoMatches": "没有匹配此长输入的结果",
           "entriesLabel": "文件夹条目",
-          "inputLabel": "筛选或路径"
+          "inputLabel": "筛选或路径",
+          "fileHint": "Files can't be opened as a project"
         },
         "SleepTwinWorkspaceDialog": {
           "title": "Sleep Workspace",
@@ -5619,7 +5725,10 @@
           "a49196d538": "当 Orca 创建新工作树时运行。",
           "d9f2db2738": "项目的设置",
           "a5bb8c5135": "保存在这个",
-          "dcaa645da5": "好的"
+          "dcaa645da5": "好的",
+          "savedSetupCommand": "Saved the setup command.",
+          "savedWithSkippedFields_one": "1 unsupported field skipped. Saved the setup command.",
+          "savedWithSkippedFields_other": "{{count}} unsupported fields skipped. Saved the setup command."
         },
         "SetupScriptPromptCardViews": {
           "96a7f4198c": "保存本地设置",
@@ -5851,7 +5960,8 @@
         "WorkspaceKanbanStatusLane": {
           "8ad104642b": "空的",
           "3611d1ae7f": "调整工作区看板列宽",
-          "2df01a03ff": "没有匹配项"
+          "2df01a03ff": "没有匹配项",
+          "newWorkspaceIn": "New workspace in {{status}}"
         },
         "WorkspaceStatusAppearancePopover": {
           "514be2f569": "将 {{value0}} 颜色设置为 {{value1}}",
@@ -5891,7 +6001,8 @@
           "ef18787206": "已排队删除"
         },
         "WorktreeCardAgents": {
-          "1b0a156717": "智能体"
+          "1b0a156717": "智能体",
+          "agentUnavailable": "Agent is not available"
         },
         "WorktreeCardReviewDetailSection": {
           "reviewHeader": "{{value0}} #{{value1}}",
@@ -5958,7 +6069,8 @@
           "5d1a5d51bb": "已停止 {{value0}} 上的进程",
           "c89f290e25": "已复制 {{value0}}",
           "d1113f4660": "无法打开浏览器",
-          "fed49903c9": "{{value0}} 直播 {{value1}}"
+          "fed49903c9": "{{value0}} 直播 {{value1}}",
+          "unknownProcess": "Unknown process"
         },
         "WorktreeContextMenu": {
           "c39c37676a": "创建一个组并将该项目移入其中。",
@@ -6349,11 +6461,17 @@
           }
         },
         "CacheTimer": {
-          "07729cc155": "已到期"
+          "07729cc155": "已到期",
+          "expiredTooltip": "The next message will re-send the full context as uncached tokens",
+          "expiresIn": "Prompt cache expires in {{time}}"
         },
         "DeleteWorktreeDialogFooter": {
           "c0e972d726": "取消",
-          "cf95e3b5bb": "关闭"
+          "cf95e3b5bb": "关闭",
+          "deleteWorkspace": "Delete Workspace",
+          "deleting": "Deleting...",
+          "forceDelete": "Force Delete",
+          "forceDeleting": "Force Deleting..."
         },
         "index": {
           "b826a98b6f": "忙碌的"
@@ -6514,7 +6632,9 @@
         },
         "WorktreeCardStatusSlot": {
           "branchIdentity": "分支",
-          "sleeping": "睡眠"
+          "sleeping": "睡眠",
+          "markAsRead": "Mark as read",
+          "markAsUnread": "Mark as unread"
         },
         "NewExternalWorktreesInboxLine": {
           "9f2d4c8b17": "永久隐藏 {{value0}} 的外部工作树",
@@ -6787,16 +6907,53 @@
           "turnedOff": "WSL 主机已在设置 → 实验性中关闭",
           "turnedOffShort": "已在设置 → 实验性中关闭",
           "serverFilesMissing": "此版本的 Orca 无法运行 WSL 主机（缺少服务器文件）。",
-          "serverFilesMissingShort": "此版本无法运行 WSL 主机"
+          "serverFilesMissingShort": "此版本无法运行 WSL 主机",
+          "removalPending": "Removal didn’t finish"
         },
         "wslHostRemoval": {
-          "partial": "主机已被移除，但发行版中仍有内容在运行：{{value0}}"
+          "partial": "主机已被移除，但发行版中仍有内容在运行：{{value0}}",
+          "pending": "Orca didn’t remove the host yet: {{value0}} Remove it again to retry, or connect it to keep it."
         },
         "addRepoWslHostFolderPicker": {
           "otherDistro": "该文件夹位于 {{value0}} 中，而不是 {{value1}}。",
           "outsideDistro": "请选择 {{value0}} 内的文件夹。",
           "underDistro": "此主机只能添加 \\\\wsl.localhost\\{{value0}} 下的文件夹。",
           "windowsDrive": "Windows 驱动器上的文件夹保留在此计算机上。请选择此计算机作为主机以添加。"
+        },
+        "RemoteFileBrowserEntryList": {
+          "pathEmpty": "{{path}} is empty"
+        },
+        "importedWorktreesCardActions": {
+          "keepHiddenError": "Could not keep discovered worktrees hidden. Try again.",
+          "showError": "Could not show discovered worktrees. Try again."
+        },
+        "repoHeaderProjectActions": {
+          "hideNonOrcaWorktrees": "Hide non-Orca worktrees",
+          "showHiddenWorktrees": "Show hidden worktrees"
+        },
+        "useWorktreeCardLinkedDetails": {
+          "issueUnavailable": "Issue details unavailable",
+          "linearIssueUnavailable": "Linear issue details unavailable",
+          "loadingIssue": "Loading issue...",
+          "loadingLinearIssue": "Loading Linear issue..."
+        },
+        "useWorktreeCardWorkspaceActions": {
+          "markRead": "Mark read",
+          "markUnread": "Mark unread"
+        },
+        "workspaceBatchActionLabels": {
+          "deleteCount_one": "Delete 1 Workspace",
+          "deleteCount_other": "Delete {{count}} Workspaces",
+          "deleteSelected": "Delete Selected",
+          "sleep": "Sleep",
+          "sleepCount_one": "Sleep 1 Workspace",
+          "sleepCount_other": "Sleep {{count}} Workspaces"
+        },
+        "addRepoBusyLabels": {
+          "scanningRepositories": "Scanning for repositories...",
+          "openingProject": "Opening project...",
+          "openingFolder": "Opening folder...",
+          "chooseFolder": "Choose a folder..."
         }
       },
       "shared": {
@@ -7030,7 +7187,9 @@
               "description": "可选的覆盖设置。如果留空，Orca 将使用您运行 /connect 时 OpenCode 保存的密钥，其次使用 OPENCODE_API_KEY。",
               "label": "OpenCode Go API 密钥",
               "placeholder": "留空以使用 /connect 或 OPENCODE_API_KEY 保存的密钥",
-              "help": "用于在状态栏中显示 OpenCode Go 使用情况。下面的会话 Cookie 仅旧版控制台 (OpenCode Black) 账号需要。"
+              "help": "用于在状态栏中显示 OpenCode Go 使用情况。下面的会话 Cookie 仅旧版控制台 (OpenCode Black) 账号需要。",
+              "checking": "Checking…",
+              "unavailable": "Status unavailable"
             }
           },
           "remoteScopeLocalAccountsKeptHostPicker": "在此桌面上管理的账户保持不变。请在设置顶部的“主机”菜单中选择此计算机以查看它们。",
@@ -8963,7 +9122,9 @@
           "reconnectOnLaunchHelp": "关闭后，Orca 启动时会让此主机及通过它访问的 Orca 服务器保持断开，直到你手动连接。",
           "allowRemoteCliControl": "允许此主机的 orca CLI 控制 Orca",
           "allowRemoteCliControlHelp": "新主机默认开启。允许在此主机上运行的 orca 命令打开并操作此桌面上的 Orca 浏览器标签页，但仅限此主机的工作区，且仅在主机连接期间；并允许此主机上由旧版 Orca 启动的终端为其自身受监督的工作运行编排命令（check、inbox、send、ask、reply）。它们无法读取你的文件、剪贴板或 Cookie。关闭时，它们只能访问此主机自身的 Orca 服务器。",
-          "addHost": "添加主机"
+          "addHost": "添加主机",
+          "proxyConnectionReuse": "Reuse one proxy connection",
+          "proxyConnectionReuseHelp": "Faster connects through slow ProxyCommand or ProxyJump hosts. Only enable if your ssh_config doesn't rely on host-specific Match or %h rules."
         },
         "TasksPane": {
           "f71d8a9dd3": "任务提供者",
@@ -11774,7 +11935,8 @@
           "review": "审查",
           "reviewFirst": "先审查",
           "singular": "全局保存不会更改 1 个拥有自己配置的仓库。",
-          "tooltipTitle": "仓库覆盖"
+          "tooltipTitle": "仓库覆盖",
+          "surface": "Chat or CLI"
         },
         "linear": {
           "agent": {
@@ -12891,7 +13053,12 @@
           "refusedLeaveBehind": "此主机的部分已保存项目无法移到其 Orca 服务器：{{items}}。“仍要迁移”会连接此主机，并将这些项目保留在这台电脑上。",
           "refusedLeaveBehindUnnamed": "此主机的部分已保存项目无法移到其 Orca 服务器。“仍要迁移”会连接此主机，并将这些项目保留在这台电脑上。",
           "runtimeNoexec": "此主机不允许执行 ~/.orca-remote 中的程序，因此 Orca 无法在那里启动服务器。这通常是因为主目录以 noexec 选项挂载。请联系主机管理员，允许在该目录中执行程序，然后重新连接。",
-          "setupContactLost": "Orca 在设置服务器时失去了与此主机的联系。主机上没有任何进程被停止。请重新连接以继续。"
+          "setupContactLost": "Orca 在设置服务器时失去了与此主机的联系。主机上没有任何进程被停止。请重新连接以继续。",
+          "automationsLeftDisabled_one": "This host’s Orca server took over {{count}} automation but couldn’t turn it back on. Turn it on in Automations.",
+          "automationsLeftDisabled_other": "This host’s Orca server took over {{count}} automations but couldn’t turn them back on. Turn them on in Automations.",
+          "windowsBuildUnsupported": "This host runs a version of Windows older than Windows 10 and Windows Server 2016, so it can’t run Orca’s server. Use a host with a newer version of Windows, or a Linux or macOS host.",
+          "windowsNoExtractor": "This Windows host has neither tar.exe nor PowerShell’s Expand-Archive, so Orca can’t unpack its server there. Install Windows PowerShell 5.1 on the host, then connect again.",
+          "automationsLeftDisabled": "This host’s Orca server took over {{count}} automations but couldn’t turn them back on. Turn them on in Automations."
         },
         "deltaMove": {
           "action": "迁移新项目…",
@@ -13168,6 +13335,39 @@
               "windowsFailureTitle": "Windows 未显示通知",
               "windowsFailureDescription": "请在 Windows 设置中为 Orca 开启通知。"
             }
+          }
+        },
+        "recoverServer": {
+          "title": "Recover Orca’s server",
+          "description": "Orca’s server on this host won’t start because a lock from an earlier run is still in place.",
+          "checking": "Checking the lock…",
+          "confirmCheck": "No other machine sharing this home is running Orca",
+          "cancel": "Cancel",
+          "confirm": "Clear lock and restart",
+          "eligible": "Nothing answers on this machine at its old address, but Orca can’t rule out another machine with the same name that shares this home folder.",
+          "host": "Host",
+          "lockBoot": "Written during boot",
+          "currentBoot": "Current boot",
+          "warning": "Only continue if no other machine sharing this home runs Orca for this profile.",
+          "none": "There is no lock to clear any more. Reconnect to start this host’s Orca server.",
+          "manualCommand": "Run this on the host, or delete the lock file shown in Details:",
+          "manualDelete": "Delete the lock file shown in Details once you are sure no other machine uses it.",
+          "action": "Recover server…",
+          "written": "Written",
+          "manualDeleteCommand": "Delete the lock on the host by hand:",
+          "manualDeleteWarning": "Only do this if no other machine sharing this home runs Orca for this profile.",
+          "close": "Close",
+          "reclaimedNotStarted": "The lock was cleared, but Orca’s server did not start."
+        },
+        "claudeSubagentNavigation": {
+          "title": "Claude subagent navigation",
+          "description": "Open Claude subagents from the sidebar. Adds a shortcut to Claude’s keybindings.json and loads an Orca mod in new Orca panes. Requires Claude 2.1.300+ and status hooks. Turning off removes Orca’s shortcut; shortcuts you delete stay deleted.",
+          "search": {
+            "subagent": "subagent",
+            "navigation": "navigation",
+            "plugin": "plugin",
+            "mod": "mod",
+            "shortcut": "shortcut"
           }
         }
       },
@@ -14162,7 +14362,31 @@
                   "226b85a3a7": "fetch",
                   "323bb614aa": "提交并同步",
                   "2b8e6595fd": "提交",
-                  "04d709801d": "从远程获取但不合并"
+                  "04d709801d": "从远程获取但不合并",
+                  "checkingBranchStatus": "Checking branch status…",
+                  "titleCheckingPrStatus": "Checking PR status…",
+                  "titlePrAlreadyMerged": "PR is already merged",
+                  "titleCheckOutBranchToSync": "Check out a branch before syncing commits",
+                  "titlePublishBranchFirst": "Publish the branch first to sync commits",
+                  "titleUseForcePush": "Use Commit & Force Push — remote only has older copies of local commits",
+                  "titleCommitThenPullPush": "Commit, then pull and push",
+                  "rebaseFromNamedBase": "Rebase from {{baseRef}}",
+                  "rebaseFromBase": "Rebase from Base",
+                  "rebaseChooseRemoteBase": "Choose a remote base branch to rebase from",
+                  "rebaseDirtyHint": "Try rebasing; git may require committing or stashing local changes first",
+                  "rebaseWithLatestFrom": "Rebase current branch with latest commits from {{baseRef}}",
+                  "blockedCommitFirst": "Commit changes first",
+                  "blockedCheckOutBranchFirst": "Check out a branch first",
+                  "blockedSwitchToFeatureBranch": "Switch to a feature branch",
+                  "blockedPublishBranch": "Publish Branch",
+                  "blockedPushFirst": "Push first",
+                  "blockedForcePushFirst": "Force Push first",
+                  "blockedSyncFirst": "Sync first",
+                  "blockedUnsupportedProvider": "Unsupported provider",
+                  "blockedExistingReview": "A {{reviewLabel}} already exists",
+                  "blockedForkHeadUnsupported": "Fork head unsupported",
+                  "blockedBaseNotOnRemote": "Base branch is not on the remote",
+                  "blockedBranchNotReady": "Branch is not ready"
                 }
               },
               "primary": {
@@ -17320,7 +17544,8 @@
           "51a470b966": "SSH",
           "b09b2384fd": "已暂停",
           "eaa02014f8": "启用",
-          "29baf8f4c2": "来源"
+          "29baf8f4c2": "来源",
+          "lastRunFailed": "Last run failed."
         },
         "AutomationEditorDialog": {
           "fb1896a5e7": "取消",
@@ -17506,7 +17731,8 @@
           "tableLastRun": "最后一次运行",
           "noListMatches": "没有自动化匹配。",
           "destinationProjectUnavailable": "选择所选自动化目标拥有的项目。",
-          "ownerChanged": "这种自动化改变了主机。刷新并重试。"
+          "ownerChanged": "这种自动化改变了主机。刷新并重试。",
+          "runError": "Error:"
         },
         "CreateFromPicker": {
           "f061f49e3f": "搜索仓库分支...",
@@ -18464,7 +18690,13 @@
         "selectMachine": "选择 {{value0}} 上的全部聊天",
         "sshHost": "SSH",
         "done": "完成",
-        "resultListLabel": "本次恢复的聊天"
+        "resultListLabel": "本次恢复的聊天",
+        "serverTitle": "{{machine}} restarted",
+        "serverBody": "These chats were working when Orca on {{machine}} restarted. Resuming restores each one where it stopped and asks the agent to carry on. Your own prompt is not re-sent.",
+        "serverDismiss": "Dismiss",
+        "serverResumeAll": "Resume all {{count}} on {{machine}}",
+        "serverResumeHereOne": "Resume 1 chat started here",
+        "serverResumeHere": "Resume {{count}} chats started here"
       },
       "linear-issue-attribute-filter-coverage-notice": {
         "statusPartialTeamCoverage": "过滤 {{value1}} 团队状态中的 {{value0}} — 不包括其余团队的问题。",
@@ -18689,6 +18921,11 @@
         "cancelled": "此普通 SSH 终端在启动前已关闭。",
         "terminalUnavailable": "Orca 无法在此处打开终端。",
         "openHint": "在 Orca 无法在该主机上完成设置时，仍可让你继续在主机上工作。"
+      },
+      "ClaudeAgentViewIndicator": {
+        "viewing": "Currently viewing",
+        "viewingChild": "Viewing subagent {{name}}",
+        "returnHint": "Click the parent row to return. Esc stops this subagent. Enter sends your draft to this subagent."
       }
     },
     "i18n": {
@@ -18966,7 +19203,8 @@
         "compactAfterRetry": "请先重试您之前的消息，然后再运行 /compact。",
         "clearAfterSending": "您之前的消息仍在发送中。发送完成后再运行 /clear。",
         "compactAfterSending": "您之前的消息仍在发送中。发送完成后再运行 /compact。",
-        "pendingWork": "在使用此命令之前，请等待挂起的工作和消息完成。"
+        "pendingWork": "在使用此命令之前，请等待挂起的工作和消息完成。",
+        "notDoneGoalChangeIncomplete": "Couldn't finish changing the goal. Check the chat."
       },
       "composer": {
         "imageUnsupported": "此智能体不支持粘贴图片。",
@@ -19504,7 +19742,10 @@
         "queued": "已排队",
         "clearAll": "全部清除",
         "pasteOrDropImages": "粘贴或拖入图片",
-        "saveNeedsContent": "添加文字或图片后才能保存"
+        "saveNeedsContent": "添加文字或图片后才能保存",
+        "moveChanged": "The queue changed before this move. Try dragging the message again.",
+        "reorderHint": "Drag to reorder, or use the Up and Down arrow keys.",
+        "reorderMessage": "Reorder message"
       },
       "thought": "已思考",
       "thoughtForDuration": "思考了 {{duration}}",
@@ -19919,6 +20160,9 @@
         "copySessionId": "复制会话 ID",
         "copySessionIdSuccess": "已复制会话 ID",
         "copySessionIdError": "复制会话 ID 失败"
+      },
+      "hostFile": {
+        "updateHostForOutsideFiles": "Update Orca on {{value0}} to open files outside its workspaces"
       }
     },
     "onboarding": {
@@ -20352,6 +20596,28 @@
     },
     "managedProfile": {
       "createFailed": "无法创建此工作区的浏览器配置文件。关闭此选项卡并打开一个新选项卡以重试。"
+    },
+    "history": {
+      "clear": "Clear browsing history",
+      "clearAllTime": "All time",
+      "clearLastHour": "Last hour",
+      "clearRange": "Clear history from",
+      "clearToday": "Today",
+      "cleared": "Cleared browsing history",
+      "close": "Close",
+      "description": "Search and manage browsing history",
+      "empty": "Pages you visit will show up here",
+      "enterKey": "Enter",
+      "escKey": "Esc",
+      "menuItem": "History",
+      "noMatches": "No pages match your search",
+      "open": "Open",
+      "remove": "Remove from history",
+      "removeShort": "Remove",
+      "search": "Search history",
+      "title": "History",
+      "today": "Today",
+      "yesterday": "Yesterday"
     }
   },
   "runtimeRpc": {
@@ -20425,6 +20691,10 @@
       "description": "活动工作区隐藏在侧边栏中。显示它只会调整隐藏它的过滤器。",
       "confirm": "调整滤镜并显示",
       "cancel": "保留过滤器"
+    },
+    "startupWorktreeRefresh": {
+      "loading": "Discovering workspaces…",
+      "description": "More workspaces may appear while local and remote projects load."
     }
   },
   "editor": {
@@ -20433,7 +20703,8 @@
       "openAnyway": "无论如何打开"
     },
     "fileLoad": {
-      "hostUnresolved": "主机找不到该文件的工作区。它可能已被删除，或者主机可能还不知道。重试，或从选项卡栏中关闭此选项卡。"
+      "hostUnresolved": "主机找不到该文件的工作区。它可能已被删除，或者主机可能还不知道。重试，或从选项卡栏中关闭此选项卡。",
+      "remoteTooLarge": "This file is too large to open from its host."
     },
     "markdownPreview": {
       "tooLarge": "文件超过 {{limit}} 预览限制。请打开文件查看源代码。",
@@ -20880,7 +21151,9 @@
         "reviewBodyOther": "另有 {{count}} 个 Claude 会话未移至 {{next}}。",
         "notMovedOne": "另有 1 个会话未移动。",
         "notMovedOther": "另有 {{count}} 个会话未移动。",
-        "review": "查看"
+        "review": "查看",
+        "uncheckedOne": "Couldn't check 1 terminal for Claude. If Claude is running there, it stays on {{previous}} until restarted.",
+        "uncheckedOther": "Couldn't check {{count}} terminals for Claude. Any Claude running there stays on {{previous}} until restarted."
       }
     },
     "hostSignIn": {
@@ -21186,7 +21459,8 @@
       "viewError": "查看错误",
       "dialogTitle": "聊天自动命名失败",
       "dialogDescriptionStart": "Orca 无法根据第一条消息为",
-      "dialogDescriptionEnd": "生成名称。"
+      "dialogDescriptionEnd": "生成名称。",
+      "settings": "Settings"
     }
   },
   "jira": {
@@ -21469,5 +21743,10 @@
     "ok": "确定",
     "unavailableMessage": "Orca 目前无法停止所有终端会话。",
     "unavailableDetail": "未停止任何内容。请在终端打开后重试。如果某个终端显示它是在较新版本的 Orca 中打开的，请先重新打开它。如果终端已经打开，请退出并重新打开 Orca，然后重试。"
+  },
+  "nativeChat": {
+    "math": {
+      "scrollDisplayEquation": "Scroll display equation"
+    }
   }
 }
